@@ -72,12 +72,8 @@ do
 
   echo "Setting ${POSTGRES_URL}_PGBOUNCER config var"
 
-  if [ "$PGBOUNCER_PREPARED_STATEMENTS" == "false" ]
-  then
-    export ${POSTGRES_URL}_PGBOUNCER=postgres://$DB_USER:$DB_PASS@127.0.0.1:6000/$CLIENT_DB_NAME?prepared_statements=false
-  else
-    export ${POSTGRES_URL}_PGBOUNCER=postgres://$DB_USER:$DB_PASS@127.0.0.1:6000/$CLIENT_DB_NAME
-  fi
+  export ${POSTGRES_URL}_PGBOUNCER=postgres://$DB_USER:$DB_PASS@127.0.0.1:6000/$CLIENT_DB_NAME?prepared_statements=false
+ 
 
   cat >> /app/vendor/stunnel/stunnel-pgbouncer.conf << EOFEOF
 [$POSTGRES_URL]
